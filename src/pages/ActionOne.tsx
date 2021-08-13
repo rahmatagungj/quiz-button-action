@@ -1,6 +1,11 @@
+import React from "react";
 import MainLayout from "../layouts/MainLayouts";
+import { playerActions } from "../contexts/playerActions";
 
 const ActionOne = () => {
+  const { playerOne, setPlayerOne } = React.useContext(playerActions);
+
+  const HandleClick = () => setPlayerOne(true);
   return (
     <MainLayout>
       <div className="flex justify-center w-ful mt-10">
@@ -10,8 +15,15 @@ const ActionOne = () => {
       </div>
       <main className="h-screen flex">
         <div className="m-auto">
-          <button className="bg-green-600 p-5 rounded-xl h-64 w-64 text-white font-bold text-3xl hover:bg-green-700">
-            Jawab
+          <button
+            onClick={HandleClick}
+            className={`${
+              playerOne
+                ? "cursor-not-allowed bg-yellow-600"
+                : "bg-green-600 hover:bg-green-700"
+            } p-5 rounded-xl h-64 w-64 text-white font-bold text-3xl`}
+          >
+            {!playerOne ? "Jawab" : "Menjawab"}
           </button>
         </div>
       </main>
